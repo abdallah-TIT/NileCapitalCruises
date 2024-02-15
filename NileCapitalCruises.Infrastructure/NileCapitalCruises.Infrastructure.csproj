@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.25" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.25">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NileCapitalCruises.Core\NileCapitalCruises.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\BookingEngine\RequestDtos\CabinsDtos\" />
+    <Folder Include="Dtos\BookingEngine\RequestDtos\CruiseDtos\" />
+    <Folder Include="Dtos\BookingEngine\ResponseDtos\CabinsDtos\" />
+    <Folder Include="Dtos\BookingEngine\ResponseDtos\CruiseDtos\" />
+    <Folder Include="Dtos\CMS\RequestDtos\NewFolder\" />
+    <Folder Include="Dtos\CMS\ResponseDtos\NewFolder\" />
+    <Folder Include="Dtos\Portal\RequestDtos\CabinsDtos\" />
+    <Folder Include="Dtos\Portal\RequestDtos\CruiseDtos\" />
+    <Folder Include="Dtos\Portal\ResponseDtos\CabinsDtos\" />
+    <Folder Include="Dtos\Portal\ResponseDtos\CruiseDtos\" />
+    <Folder Include="Helpers\Profiles\Portal\" />
+    <Folder Include="IServices\Portal\" />
+    <Folder Include="Services\Portal\" />
+  </ItemGroup>
+
+</Project>
