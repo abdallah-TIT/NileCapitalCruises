@@ -4,6 +4,9 @@ using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
+using NileCapitalCruises.Infrastructure.Services.CMS;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -42,8 +45,22 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
+        [HttpGet("getDurations")]
+        //[Authorize(Roles = "SystemAdmin")]
+        [ProducesResponseType(typeof(SuccessPaginationResponse<CityWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        public async Task<ActionResult<IResponse>> GetCities([FromQuery] PaginationSpecParams paginationSpecParams)
+        {
+            var item = await _durationService.GetDurations(paginationSpecParams);
 
-        
+            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+                return NotFound(item);
+
+            return Ok(item);
+        }
+
 
 
     }

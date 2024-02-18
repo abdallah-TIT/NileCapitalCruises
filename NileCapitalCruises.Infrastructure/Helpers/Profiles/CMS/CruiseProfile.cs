@@ -11,9 +11,10 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
     {
         public CruiseProfile()
         {
-            CreateMap<CruiseRequestDto, Cruise>();
-            CreateMap<Cruise, BasicCruiseResponseDto>();
-            CreateMap<Cruise, CruiseWithContentResponseDto>()
+            CreateMap<CMSCruiseRequestDto, Cruise>();
+            CreateMap<Cruise, CMSBasicCruiseResponseDto>()
+                .ForMember(dest => dest.CruiseId, opt => opt.MapFrom(src => src.Id));
+            CreateMap<Cruise, CMSCruiseWithContentResponseDto>().ForMember(dest => dest.CruiseId, opt => opt.MapFrom(src => src.Id))
                .AfterMap((src, dest) =>
                {
                    if (src.CruiseContents.Count > 0)
@@ -23,8 +24,9 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
             //CreateMap<CompanyUserCruiseRequestDto, CompanyUserCruise>();
 
             ////
-            CreateMap<CruiseContent, BasicCruiseResponseDto>();
-            CreateMap<CruisePhoto, CruisePhotoResponseDto>();
+            CreateMap<CruiseContent, CMSBasicCruiseResponseDto>();
+                
+            CreateMap<CruisePhoto, CMSCruisePhotoResponseDto>();
 
 
 
@@ -40,10 +42,10 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
 
             // For Photos
 
-            CreateMap<CruisePhotoRequestDto, CruisePhoto>();
-            CreateMap<CruisePhoto, CruisePhotoResponseDto>();
+            CreateMap<CMSCruisePhotoRequestDto, CruisePhoto>();
+            CreateMap<CruisePhoto, CMSCruisePhotoResponseDto>();
 
-            CreateMap<Cruise, CruisesResponseDto>()
+            CreateMap<Cruise, CMSCruisesResponseDto>()
                 .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.CruisePhotos))
                 .AfterMap((src, dest) =>
                 {
@@ -53,8 +55,10 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
 
             /// Start Cruise Content
 
-            CreateMap<CruiseContent, CruiseContentResponseDto>();
-            CreateMap<CruiseContentRequestDto, CruiseContent>();
+            CreateMap<CruiseContent, CMSCruiseContentResponseDto>()
+                .ForMember(dest => dest.CruiseContentId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.CruiseId, opt => opt.MapFrom(src => src.OriginalTableId));
+            CreateMap<CMSCruiseContentRequestDto, CruiseContent>();
 
         }
     }

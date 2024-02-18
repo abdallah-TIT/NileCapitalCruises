@@ -11,7 +11,8 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
         {
             /// Start WeekDay
             CreateMap<WeekDayRequestDto, WeekDay>();
-            CreateMap<WeekDay, BasicWeekDayResponseDto>();
+            CreateMap<WeekDay, BasicWeekDayResponseDto>()
+                .ForMember(dest => dest.WeekdayId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

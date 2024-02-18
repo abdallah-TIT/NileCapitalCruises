@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CompanyDtos
 {
-    public class CompanyContentRequestDto
+    public class CMSCompanyContentRequestDto
     {
         [MaxLength(150)]
         public string? CompanyName { get; set; }

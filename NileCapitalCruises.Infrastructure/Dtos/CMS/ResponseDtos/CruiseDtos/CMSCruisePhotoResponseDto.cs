@@ -1,6 +1,6 @@
 ﻿namespace NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CruiseDtos
 {
-    public class CruisePhotoResponseDto
+    public class CMSCruisePhotoResponseDto
     {
         public int Id { get; set; }
 

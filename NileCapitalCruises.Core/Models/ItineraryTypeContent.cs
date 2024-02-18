@@ -20,7 +20,7 @@ namespace NileCapitalCruises.Core.Models
 
         [MaxLength(150)]
         public string? ItineraryTypeName { get; set; }
-        public bool? ContentLangStatus { get; set; }
+        public bool? ContentLangStatus { get; set; } = false;
         public int? LanguageId { get; set; }
 
         [ForeignKey("ItineraryType")]

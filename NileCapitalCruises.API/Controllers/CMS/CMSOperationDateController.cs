@@ -23,7 +23,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
         [HttpPost("createOperationDate")]
-        [Authorize(Roles = "SystemAdmin")]
+        //[Authorize(Roles = "SystemAdmin")]
 
         [ProducesResponseType(typeof(SuccessSingleResponse<BasicOperationDateResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -46,7 +46,28 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        
+        [HttpPost("createOperationDates")]
+        //[Authorize(Roles = "SystemAdmin")]
+
+        [ProducesResponseType(typeof(SuccessSingleResponse<IEnumerable<BasicOperationDateResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        public async Task<ActionResult<IResponse>> CreateOperationDates(OperationDatesRequestDto requestDto, [FromQuery] int companyId)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+                return BadRequest(response);
+            }
+            var item = await _operationDateService.CreateOperationDates(companyId, requestDto);
+            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+                return BadRequest(item);
+
+            return Ok(item);
+        }
+
 
 
     }

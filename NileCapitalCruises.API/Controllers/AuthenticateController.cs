@@ -50,7 +50,7 @@ namespace NileCapitalCruises.API.Controllers
                 HttpContext.Response.Cookies.Append("accessToken", loginResponse.AccessToken,
                    new CookieOptions()
                    {
-                       Expires = DateTime.Now.AddMinutes(Convert.ToInt32(_configuration["JWT:AccessTokenExpirationMinutes"]))
+                       Expires = DateTime.Now.AddDays(Convert.ToInt32(_configuration["JWT:AccessTokenExpirationDays"]))
                                    .ToLocalTime(),
                        Secure = true,
                        HttpOnly = true,

@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using System.Security.Claims;
 using System.Transactions;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.ItineraryTypeSpecification;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryTypeDtos;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {
@@ -61,8 +63,8 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CruiseSpecification(cruiseId, companyId);
             var cruise = await _cruiseRepo.GetEntityWithSpecAsync(spec);
             if (cruise == null) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var cruiseDto = _mapper.Map<BasicCruiseResponseDto>(cruise);
-            return SuccessSingleResponse<BasicCruiseResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var cruiseDto = _mapper.Map<CMSBasicCruiseResponseDto>(cruise);
+            return SuccessSingleResponse<CMSBasicCruiseResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
         public async Task<IResponse> GetCruiseContent(int cruiseId,int companyId, string languageCode = "en")
@@ -77,11 +79,42 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CruiseContentSpecification(cruiseId, languageCode);
             var item = await _cruiseContentRepo.GetEntityWithSpecAsync(spec);
             if (item == null) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var itemDto = _mapper.Map<CruiseContentResponseDto>(item);
-            return SuccessSingleResponse<CruiseContentResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var itemDto = _mapper.Map<CMSCruiseContentResponseDto>(item);
+            return SuccessSingleResponse<CMSCruiseContentResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
-        public async Task<IResponse> UpdateCruiseContent(int cruiseId, int companyId, CruiseContentRequestDto requestDto, string languageCode = "en")
+        public async Task<IResponse> GetCruiseContents(int cruiseId, int companyId)
+        {
+            var claims = _tokenService.GetClaimsFromJwt(_httpContext);
+            if (claims.ContainsKey("CompanyId") && int.Parse(claims["CompanyId"]) != companyId)
+            {
+                return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.ForbiddenAccess }, StatusCodeAndErrorsMessagesStandard.BadRequest);
+
+            }
+
+            var spec = new CruiseContentSpecification(cruiseId);
+
+            var items = await _cruiseContentRepo.ListAsync(spec);
+            if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
+
+
+            var data = _mapper.Map<IReadOnlyList<CMSCruiseContentResponseDto>>(items);
+
+            return SuccessListResponse<CMSCruiseContentResponseDto>.Success(
+                    data != null,
+                    StatusCodeAndErrorsMessagesStandard.OK,
+                    data
+
+                );
+
+
+
+
+        }
+
+
+
+        public async Task<IResponse> UpdateCruiseContent(int cruiseId, int companyId, CMSCruiseContentRequestDto requestDto, string languageCode = "en")
         {
             var claims = _tokenService.GetClaimsFromJwt(_httpContext);
             if (claims.ContainsKey("CompanyId") && int.Parse(claims["CompanyId"]) != companyId)
@@ -100,9 +133,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                 _cruiseContentRepo.UpdateEntity(item);
                 await _cruiseContentRepo.SaveChangesAsync();
 
-                var updatedDto = _mapper.Map<CruiseContentResponseDto>(item);
+                var updatedDto = _mapper.Map<CMSCruiseContentResponseDto>(item);
 
-                return SuccessSingleResponse<CruiseContentResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
+                return SuccessSingleResponse<CMSCruiseContentResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
             }
             catch (Exception)
             {
@@ -124,11 +157,11 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CruisePhotoSpecification(null,cruiseId);
             var items = await _cruisePhotoRepo.ListAsync(spec);
             if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var itemsDto = _mapper.Map< IEnumerable<CruisePhotoResponseDto>>(items);
-            return SuccessSingleResponse< IEnumerable<CruisePhotoResponseDto>>.Success(itemsDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var itemsDto = _mapper.Map< IEnumerable<CMSCruisePhotoResponseDto>>(items);
+            return SuccessSingleResponse< IEnumerable<CMSCruisePhotoResponseDto>>.Success(itemsDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
-        public async Task<IResponse> CreateCruisePhotos(int cruiseId, int companyId, IEnumerable<CruisePhotoRequestDto> requestDto)
+        public async Task<IResponse> CreateCruisePhotos(int cruiseId, int companyId, IEnumerable<CMSCruisePhotoRequestDto> requestDto)
         {
             var claims = _tokenService.GetClaimsFromJwt(_httpContext);
             if (claims.ContainsKey("CompanyId") && int.Parse(claims["CompanyId"]) != companyId)
@@ -147,9 +180,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                 await _cruisePhotoRepo.CreateEntitiesAsync(newItems);
                 await _cruisePhotoRepo.SaveChangesAsync();
 
-                var createdDto = _mapper.Map<IEnumerable<CruisePhotoResponseDto>>(newItems);
+                var createdDto = _mapper.Map<IEnumerable<CMSCruisePhotoResponseDto>>(newItems);
 
-                return SuccessSingleResponse<IEnumerable<CruisePhotoResponseDto>>.Success(createdDto, StatusCodeAndErrorsMessagesStandard.OK);
+                return SuccessSingleResponse<IEnumerable<CMSCruisePhotoResponseDto>>.Success(createdDto, StatusCodeAndErrorsMessagesStandard.OK);
             }
             catch (Exception)
             {
@@ -249,8 +282,8 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CruiseSpecification(cruiseByUrl.Id, languageCode, _mapper);
             var cruise = await _cruiseRepo.GetEntityWithSpecAsync(spec);
             if (cruise == null) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var cruiseDto = _mapper.Map<CruisesResponseDto>(cruise);
-            return SuccessSingleResponse<CruisesResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var cruiseDto = _mapper.Map<CMSCruisesResponseDto>(cruise);
+            return SuccessSingleResponse<CMSCruisesResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
         
@@ -299,9 +332,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
            
 
-            var data = _mapper.Map<IReadOnlyList<CruiseWithContentResponseDto>>(items);
+            var data = _mapper.Map<IReadOnlyList<CMSCruiseWithContentResponseDto>>(items);
 
-            return SuccessPaginationResponse<CruiseWithContentResponseDto>.Success(
+            return SuccessPaginationResponse<CMSCruiseWithContentResponseDto>.Success(
                     data != null,
                     StatusCodeAndErrorsMessagesStandard.OK,
                     data,
@@ -313,7 +346,7 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
 
 
 
-        public async Task<IResponse> CreateCruise(CruiseRequestDto requestDto, int companyId)
+        public async Task<IResponse> CreateCruise(CMSCruiseRequestDto requestDto, int companyId)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
@@ -339,9 +372,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
 
                     await _cruiseRepo.SaveChangesAsync();
 
-                    var cruiseDto = _mapper.Map<BasicCruiseResponseDto>(newItem);
+                    var cruiseDto = _mapper.Map<CMSBasicCruiseResponseDto>(newItem);
                     scope.Complete();
-                    return SuccessSingleResponse<BasicCruiseResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.Created);
+                    return SuccessSingleResponse<CMSBasicCruiseResponseDto>.Success(cruiseDto, StatusCodeAndErrorsMessagesStandard.Created);
                 }
                 catch (Exception)
                 {
@@ -351,7 +384,7 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
 
         }
 
-        public async Task<IResponse> UpdateCruise(int cruiseId,int companyId, CruiseRequestDto requestDto)
+        public async Task<IResponse> UpdateCruise(int cruiseId,int companyId, CMSCruiseRequestDto requestDto)
         {
 
             try
@@ -367,9 +400,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                 _cruiseRepo.UpdateEntity(existingItem);
                 await _cruiseRepo.SaveChangesAsync();
 
-                var updatedDto = _mapper.Map<BasicCruiseResponseDto>(existingItem);
+                var updatedDto = _mapper.Map<CMSBasicCruiseResponseDto>(existingItem);
 
-                return SuccessSingleResponse<BasicCruiseResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
+                return SuccessSingleResponse<CMSBasicCruiseResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
             }
             catch (Exception)
             {

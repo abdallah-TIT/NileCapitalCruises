@@ -131,9 +131,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.UserNotAssignToAnyCruise }, StatusCodeAndErrorsMessagesStandard.NotFound);
 
 
-            var data = _mapper.Map<IReadOnlyList<CruiseWithContentResponseDto>>(items);
+            var data = _mapper.Map<IReadOnlyList<CMSCruiseWithContentResponseDto>>(items);
 
-            return SuccessPaginationResponse<CruiseWithContentResponseDto>.Success(
+            return SuccessPaginationResponse<CMSCruiseWithContentResponseDto>.Success(
                     data != null,
                     StatusCodeAndErrorsMessagesStandard.OK,
                     data,

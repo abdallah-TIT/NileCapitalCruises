@@ -29,7 +29,6 @@
     <Folder Include="Dtos\BookingEngine\ResponseDtos\CabinsDtos\" />
     <Folder Include="Dtos\BookingEngine\ResponseDtos\CruiseDtos\" />
     <Folder Include="Dtos\CMS\RequestDtos\NewFolder\" />
-    <Folder Include="Dtos\CMS\ResponseDtos\NewFolder\" />
     <Folder Include="Dtos\Portal\RequestDtos\CabinsDtos\" />
     <Folder Include="Dtos\Portal\RequestDtos\CruiseDtos\" />
     <Folder Include="Dtos\Portal\ResponseDtos\CabinsDtos\" />

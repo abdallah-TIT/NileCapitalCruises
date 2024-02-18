@@ -10,6 +10,10 @@ using NileCapitalCruises.Infrastructure.IServices;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Http;
 using System.Transactions;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.DurationSpecification;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.DurationDtos;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.WeekDaySpecification;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {
@@ -70,7 +74,26 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             }
         }
 
+        public async Task<IResponse> GetWeekdays(PaginationSpecParams paginationSpecParams)
+        {
+            var spec = new WeekDaySpecification(paginationSpecParams);
+            var countSpec = new WeekDayWithFiltersForCountSpecification(paginationSpecParams);
+            var totalItems = await _weekDayRepo.CountAsync(countSpec);
+            var items = await _weekDayRepo.ListAsync(spec);
+            if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
 
+
+            var data = _mapper.Map<IReadOnlyList<BasicWeekDayResponseDto>>(items);
+
+            return SuccessPaginationResponse<BasicWeekDayResponseDto>.Success(
+                    data != null,
+                    StatusCodeAndErrorsMessagesStandard.OK,
+                    data,
+                    paginationSpecParams.PageIndex,
+                    paginationSpecParams.PageSize,
+                    totalItems
+                );
+        }
 
 
     }

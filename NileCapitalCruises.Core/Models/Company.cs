@@ -25,19 +25,19 @@ namespace NileCapitalCruises.Core.Models
         public string? CompanyUrl { get; set; }
 
         [MaxLength(250)]
-        public string? Logo { get; set; }
+        public string? Logo { get; set; } = "none.jpg";
 
-        public DateTime? StartDate { get; set; }
+        public DateTime? StartDate { get; set; } = DateTime.Now;
         public DateTime? SubscriptionStartDate { get; set; }
         public DateTime? SubscriptionEndDate { get; set; }
         [MaxLength(50)]
-        public string? ContactPersonEmail { get; set; }
+        public string? ContactPersonEmail { get; set; } = "example@example.com";
 
         [MaxLength(50)]
-        public string? ContactPersonPhone { get; set; }
+        public string? ContactPersonPhone { get; set; } = "011";
         public bool? IsDeleted { get; set; } = false;
 
-        public bool? Status { get; set; }
+        public bool? Status { get; set; } = false;
         public virtual ICollection<CompanyContent> CompanyContents { get; set; }
         public virtual ICollection<CompanyUser> CompanyUsers { get; set; }
         public virtual ICollection<Cruise> Cruises { get; set; }

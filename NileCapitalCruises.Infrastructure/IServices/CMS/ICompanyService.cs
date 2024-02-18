@@ -16,7 +16,7 @@ namespace NileCapitalCruises.Infrastructure.IServices.CMS
 
         Task<IResponse> UpdateCompany(int companyId, CompanyRequestDto requestDto);
 
-        Task<IResponse> UpdateCompanyContent(int companyId, CompanyContentRequestDto requestDto, string languageCode = "en");
+        Task<IResponse> UpdateCompanyContent(int companyId, CMSCompanyContentRequestDto requestDto, string languageCode = "en");
 
         Task<IResponse> DeleteCompany(int companyId);
     }

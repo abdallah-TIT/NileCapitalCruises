@@ -103,7 +103,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
         [HttpGet("getItineraryTypes")]
         //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessPaginationResponse<CompanyWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessPaginationResponse<CMSCompanyWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden

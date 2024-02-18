@@ -1,6 +1,6 @@
 ﻿namespace NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CompanyDtos
 {
-    public class CompanyWithContentResponseDto
+    public class CMSCompanyWithContentResponseDto
     {
         public int CompanyId { get; set; }
 

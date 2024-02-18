@@ -2,7 +2,7 @@
 {
     public class BasicDurationResponseDto
     {
-        public int Id { get; set; }
+        public int DurationId { get; set; }
         public int? Days { get; set; }
         public int? Nights { get; set; }
         public int? Code { get; set; }

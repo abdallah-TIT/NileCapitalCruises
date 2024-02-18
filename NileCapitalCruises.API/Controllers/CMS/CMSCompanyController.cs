@@ -18,7 +18,7 @@ using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
-    [Route("api/cms/company")]
+    //[Route("api/cms/company")]
     [ApiController]
     public class CMSCompanyController : ControllerBase
     {
@@ -30,153 +30,153 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
         
-        [HttpPost("createCompany")]
-        //[Authorize(Roles = "SystemAdmin")]
+        //[HttpPost("createCompany")]
+        ////[Authorize(Roles = "SystemAdmin")]
 
-        [ProducesResponseType(typeof(SuccessPaginationResponse<BasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> CreateCompany(CompanyRequestDto requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-            var item = await _companyService.CreateCompany(requestDto);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //[ProducesResponseType(typeof(SuccessPaginationResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> CreateCompany(CompanyRequestDto requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+        //    var item = await _companyService.CreateCompany(requestDto);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
 
 
-        [HttpPut("updateCompany/{companyId}")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> UpdateCompany([FromRoute] int companyId, CompanyRequestDto requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
+        //[HttpPut("updateCompany/{companyId}")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> UpdateCompany([FromRoute] int companyId, CompanyRequestDto requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
 
-            var item = await _companyService.UpdateCompany(companyId, requestDto);
+        //    var item = await _companyService.UpdateCompany(companyId, requestDto);
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
            
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
 
-        [HttpDelete("deleteCompany/{companyId}")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> DeleteCompany([FromRoute] int companyId)
-        {
+        //[HttpDelete("deleteCompany/{companyId}")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> DeleteCompany([FromRoute] int companyId)
+        //{
            
-            var item = await _companyService.DeleteCompany(companyId);
+        //    var item = await _companyService.DeleteCompany(companyId);
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
-
-
-            return Ok(item);
-        }
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
 
-
-        [HttpGet("getCompanies")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessPaginationResponse<CompanyWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetCompanies([FromQuery] PaginationSpecParams paginationSpecParams)
-        {
-            var item = await _companyService.GetCompanies(paginationSpecParams);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            return Ok(item);
-        }
-
-        [HttpGet("getCompanyById/{companyId}")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetCompany([FromRoute] int companyId)
-        {
-            var item = await _companyService.GetCompany(companyId);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            return Ok(item);
-        }
-
-        [HttpGet("getCompanyContent/{companyId}")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetCompanyContent([FromRoute] int companyId, [FromQuery] string languageCode = "en")
-        {
-            var item = await _companyService.GetCompanyContent(companyId, languageCode);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            return Ok(item);
-        }
-
-        [HttpPut("updateCompanyContent/{companyId}")]
-        //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> UpdateCompanyContent([FromRoute] int companyId, CompanyContentRequestDto requestDto, [FromQuery] string languageCode = "en")
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-
-            var item = await _companyService.UpdateCompanyContent(companyId, requestDto, languageCode);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //    return Ok(item);
+        //}
 
 
-            return Ok(item);
-        }
+
+        //[HttpGet("getCompanies")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessPaginationResponse<CMSCompanyWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetCompanies([FromQuery] PaginationSpecParams paginationSpecParams)
+        //{
+        //    var item = await _companyService.GetCompanies(paginationSpecParams);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpGet("getCompanyById/{companyId}")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetCompany([FromRoute] int companyId)
+        //{
+        //    var item = await _companyService.GetCompany(companyId);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpGet("getCompanyContent/{companyId}")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetCompanyContent([FromRoute] int companyId, [FromQuery] string languageCode = "en")
+        //{
+        //    var item = await _companyService.GetCompanyContent(companyId, languageCode);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpPut("updateCompanyContent/{companyId}")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> UpdateCompanyContent([FromRoute] int companyId, CMSCompanyContentRequestDto requestDto, [FromQuery] string languageCode = "en")
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+
+        //    var item = await _companyService.UpdateCompanyContent(companyId, requestDto, languageCode);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
+
+
+        //    return Ok(item);
+        //}
 
 
 

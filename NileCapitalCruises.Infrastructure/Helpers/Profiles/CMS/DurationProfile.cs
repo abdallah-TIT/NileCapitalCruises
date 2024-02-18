@@ -11,7 +11,8 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
         {
             /// Start Duration
             CreateMap<DurationRequestDto, Duration>();
-            CreateMap<Duration, BasicDurationResponseDto>();
+            CreateMap<Duration, BasicDurationResponseDto>()
+                .ForMember(dest => dest.DurationId, opt => opt.MapFrom(src => src.Id));
         }
     }
 }

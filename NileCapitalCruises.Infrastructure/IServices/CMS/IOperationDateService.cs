@@ -6,6 +6,8 @@ namespace NileCapitalCruises.Infrastructure.IServices.CMS
     public interface IOperationDateService
     {
         Task<IResponse> CreateOperationDate(int companyId, OperationDateRequestDto requestDto);
-       
+        Task<IResponse> CreateOperationDates(int companyId, OperationDatesRequestDto requestDto);
+
+
     }
 }

@@ -12,6 +12,8 @@ using NileCapitalCruises.Infrastructure.IServices.CMS;
 using NileCapitalCruises.Infrastructure.Services.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryTypeDtos;
+using NileCapitalCruises.Infrastructure.Services.BookingEngine;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -30,12 +32,12 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
         [HttpPost("createCruise")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.Created)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.Created)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.BadRequest)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
         [Authorize(Roles = "SystemAdmin")]
-        public async Task<ActionResult<IResponse>> CreateCruise(CruiseRequestDto requestDto, [FromQuery] int companyId)
+        public async Task<ActionResult<IResponse>> CreateCruise(CMSCruiseRequestDto requestDto, [FromQuery] int companyId)
         {
             if (!ModelState.IsValid)
             {
@@ -55,11 +57,11 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
         [HttpPut("updateCruise/{cruiseId}")]
         [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> UpdateCruise([FromRoute] int cruiseId, [FromQuery] int companyId, CruiseRequestDto requestDto)
+        public async Task<ActionResult<IResponse>> UpdateCruise([FromRoute] int cruiseId, [FromQuery] int companyId, CMSCruiseRequestDto requestDto)
         {
             if (!ModelState.IsValid)
             {
@@ -130,7 +132,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         //}
 
         [HttpGet("getCruises")]
-        [ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<CruiseWithContentResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<CMSCruiseWithContentResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
@@ -148,7 +150,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
         [HttpGet("getCruiseById/{cruiseId}")]
 
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
@@ -162,7 +164,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
         [HttpGet("getCruiseContent/{cruiseId}")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<CruiseContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<CMSCruiseContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
@@ -176,13 +178,29 @@ namespace NileCapitalCruises.API.Controllers.CMS
             return Ok(item);
         }
 
+
+        [HttpGet("getCruiseContents/{cruiseId}")]
+        //[Authorize(Roles = "SystemAdmin")]
+        [ProducesResponseType(typeof(SuccessListResponse<CMSItineraryTypeContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        public async Task<ActionResult<IResponse>> GetItineraryTypeContents([FromRoute] int cruiseId, [FromQuery] int companyId)
+        {
+            var item = await _cruiseService.GetCruiseContents(cruiseId, companyId);
+            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+                return NotFound(item);
+
+            return Ok(item);
+        }
+
         [HttpPut("updateCruiseContent/{cruiseId}")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
         [Authorize(Roles = "SystemAdmin, CompanyAdmin, CompanyUser")]
-        public async Task<ActionResult<IResponse>> UpdateCruiseContent([FromRoute] int cruiseId, [FromQuery] int companyId, CruiseContentRequestDto requestDto, [FromQuery] string languageCode = "en")
+        public async Task<ActionResult<IResponse>> UpdateCruiseContent([FromRoute] int cruiseId, [FromQuery] int companyId, CMSCruiseContentRequestDto requestDto, [FromQuery] string languageCode = "en")
         {
             if (!ModelState.IsValid)
             {
@@ -205,12 +223,12 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
         [HttpPost("createCruisePhotos/{cruiseId}")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<IEnumerable<CruisePhotoResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<IEnumerable<CMSCruisePhotoResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
         [Authorize(Roles = "SystemAdmin, CompanyAdmin, CompanyUser")]
-        public async Task<ActionResult<IResponse>> CreateCruisePhotos([FromRoute] int cruiseId, [FromQuery] int companyId, IEnumerable<CruisePhotoRequestDto> requestDto)
+        public async Task<ActionResult<IResponse>> CreateCruisePhotos([FromRoute] int cruiseId, [FromQuery] int companyId, IEnumerable<CMSCruisePhotoRequestDto> requestDto)
         {
             if (!ModelState.IsValid)
             {
@@ -232,7 +250,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
         [HttpGet("getCruisePhotos/{cruiseId}")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<IEnumerable<CruisePhotoResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(SuccessSingleResponse<IEnumerable<CMSCruisePhotoResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden

@@ -21,43 +21,43 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPost("updateAmenitiesToCabin")]
-        [Authorize(Roles = "SystemAdmin")]
+        //[HttpPost("updateAmenitiesToCabin")]
+        //[Authorize(Roles = "SystemAdmin")]
 
-        [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> UpdateAmenitiesToCabin([FromQuery]int cabinId, int companyId, IEnumerable<CabinAmenityRequestDto> requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-            var item = await _cabinAmenityService.UpdateAmenitiesToCabin(cabinId, companyId,requestDto);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //[ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> UpdateAmenitiesToCabin([FromQuery]int cabinId, int companyId, IEnumerable<CabinAmenityRequestDto> requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+        //    var item = await _cabinAmenityService.UpdateAmenitiesToCabin(cabinId, companyId,requestDto);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
-        [HttpGet("getAmenities")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<AmenityResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetAmenities([FromQuery] int cruiseId, string languageCode = "en")
-        {
-            var item = await _cabinAmenityService.GetAmenities(cruiseId, languageCode);
+        //[HttpGet("getAmenities")]
+        //[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<AmenityResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetAmenities([FromQuery] int cruiseId, string languageCode = "en")
+        //{
+        //    var item = await _cabinAmenityService.GetAmenities(cruiseId, languageCode);
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
 
     }

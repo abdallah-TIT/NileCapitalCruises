@@ -37,7 +37,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.CMS.CruiseSpecifi
         {
             AddInclude(x => x.CruiseContents.Where(c => c.Language.LanguageAbbreviation == languageCode));
             AddInclude(x => x.CruisePhotos.Where(cp => cp.CruiseId == id));
-            AddSelect(x => _mapper.Map<CruisesResponseDto>(x));
+            AddSelect(x => _mapper.Map<CMSCruisesResponseDto>(x));
         }
 
         public CruiseSpecification(string cruiseUrl) : base(x => x.CruiseUrl == cruiseUrl)

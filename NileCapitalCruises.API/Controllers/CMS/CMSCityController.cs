@@ -23,27 +23,27 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPost("createCity")]
-        //[Authorize(Roles = "SystemAdmin")]
+        //[HttpPost("createCity")]
+        ////[Authorize(Roles = "SystemAdmin")]
 
-        [ProducesResponseType(typeof(SuccessSingleResponse<BasicCityResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> CreateCity(CityRequestDto requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-            var item = await _cityService.CreateCity(requestDto);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //[ProducesResponseType(typeof(SuccessSingleResponse<BasicCityResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> CreateCity(CityRequestDto requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+        //    var item = await _cityService.CreateCity(requestDto);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
 
         [HttpGet("getCities")]

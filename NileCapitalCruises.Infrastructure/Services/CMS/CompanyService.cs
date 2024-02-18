@@ -56,9 +56,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
 
                     await _companyRepo.SaveChangesAsync();
 
-                    var companyDto = _mapper.Map<BasicCompanyResponseDto>(newItem);
+                    var companyDto = _mapper.Map<CMSBasicCompanyResponseDto>(newItem);
                     scope.Complete();
-                    return SuccessSingleResponse<BasicCompanyResponseDto>.Success(companyDto, StatusCodeAndErrorsMessagesStandard.Created);
+                    return SuccessSingleResponse<CMSBasicCompanyResponseDto>.Success(companyDto, StatusCodeAndErrorsMessagesStandard.Created);
                 }
                 catch (Exception)
                 {
@@ -82,9 +82,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                 _companyRepo.UpdateEntity(existingItem);
                 await _companyRepo.SaveChangesAsync();
 
-                var updatedDto = _mapper.Map<BasicCompanyResponseDto>(existingItem);
+                var updatedDto = _mapper.Map<CMSBasicCompanyResponseDto>(existingItem);
                 
-                return SuccessSingleResponse<BasicCompanyResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
+                return SuccessSingleResponse<CMSBasicCompanyResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
             }
             catch (Exception)
             {
@@ -102,9 +102,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
 
 
-            var data = _mapper.Map<IReadOnlyList<CompanyWithContentResponseDto>>(items);
+            var data = _mapper.Map<IReadOnlyList<CMSCompanyWithContentResponseDto>>(items);
 
-            return SuccessPaginationResponse<CompanyWithContentResponseDto>.Success(
+            return SuccessPaginationResponse<CMSCompanyWithContentResponseDto>.Success(
                     data != null,
                     StatusCodeAndErrorsMessagesStandard.OK,
                     data,
@@ -120,8 +120,8 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CompanySpecification(companyId);
             var item = await _companyRepo.GetEntityWithSpecAsync(spec);
             if (item == null) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var itemDto = _mapper.Map<BasicCompanyResponseDto>(item);
-            return SuccessSingleResponse<BasicCompanyResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var itemDto = _mapper.Map<CMSBasicCompanyResponseDto>(item);
+            return SuccessSingleResponse<CMSBasicCompanyResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
         public async Task<IResponse> DeleteCompany(int companyId)
@@ -170,11 +170,11 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             var spec = new CompanyContentSpecification(companyId, languageCode);
             var item = await _companyContentRepo.GetEntityWithSpecAsync(spec);
             if (item == null) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
-            var itemDto = _mapper.Map<CompanyContentResponseDto>(item);
-            return SuccessSingleResponse<CompanyContentResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
+            var itemDto = _mapper.Map<CMSCompanyContentResponseDto>(item);
+            return SuccessSingleResponse<CMSCompanyContentResponseDto>.Success(itemDto, StatusCodeAndErrorsMessagesStandard.OK);
         }
 
-        public async Task<IResponse> UpdateCompanyContent(int companyId,  CompanyContentRequestDto requestDto, string languageCode = "en")
+        public async Task<IResponse> UpdateCompanyContent(int companyId,  CMSCompanyContentRequestDto requestDto, string languageCode = "en")
         {
             var spec = new CompanyContentSpecification(companyId, languageCode);
             var item = await _companyContentRepo.GetEntityWithSpecAsync(spec);
@@ -187,9 +187,9 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                 _companyContentRepo.UpdateEntity(item);
                 await _companyRepo.SaveChangesAsync();
 
-                var updatedDto = _mapper.Map<CompanyContentResponseDto>(item);
+                var updatedDto = _mapper.Map<CMSCompanyContentResponseDto>(item);
 
-                return SuccessSingleResponse<CompanyContentResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
+                return SuccessSingleResponse<CMSCompanyContentResponseDto>.Success(updatedDto, StatusCodeAndErrorsMessagesStandard.OK);
             }
             catch (Exception)
             {

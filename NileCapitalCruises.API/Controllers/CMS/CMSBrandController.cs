@@ -25,153 +25,153 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPost("createBrand")]
+        //[HttpPost("createBrand")]
+        ////[Authorize(Roles = "SystemAdmin")]
+
+        //[ProducesResponseType(typeof(SuccessPaginationResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> CreateBrand(CMSBrandRequestDto requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+        //    var item = await _brandService.CreateBrand(requestDto);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
+
+        //    return Ok(item);
+        //}
+
+
+
+        //[HttpPut("updateBrand/{brandId}")]
         //[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> UpdateBrand([FromRoute] int brandId, CMSBrandRequestDto requestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
 
-        [ProducesResponseType(typeof(SuccessPaginationResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> CreateBrand(CMSBrandRequestDto requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-            var item = await _brandService.CreateBrand(requestDto);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //    var item = await _brandService.UpdateBrand(brandId, requestDto);
 
-            return Ok(item);
-        }
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
 
-
-
-        [HttpPut("updateBrand/{brandId}")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> UpdateBrand([FromRoute] int brandId, CMSBrandRequestDto requestDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-
-            var item = await _brandService.UpdateBrand(brandId, requestDto);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
 
 
-        [HttpDelete("deleteBrand/{brandId}")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> DeleteBrand([FromRoute] int brandId)
-        {
-
-            var item = await _brandService.DeleteBrand(brandId);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
-
-
-            return Ok(item);
-        }
-
-
-
-        [HttpGet("getBrands")]
+        //[HttpDelete("deleteBrand/{brandId}")]
         //[Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<CMSBrandWithContentResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetBrands([FromQuery] PaginationSpecParams paginationSpecParams)
-        {
-            var item = await _brandService.GetBrands(paginationSpecParams);
+        //[ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> DeleteBrand([FromRoute] int brandId)
+        //{
 
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
+        //    var item = await _brandService.DeleteBrand(brandId);
 
-            return Ok(item);
-        }
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
 
-        [HttpGet("getBrandById/{brandId}")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetBrand([FromRoute] int brandId)
-        {
-            var item = await _brandService.GetBrand(brandId);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            return Ok(item);
-        }
-
-        [HttpGet("getBrandContent/{brandId}")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBrandContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetBrandContent([FromRoute] int brandId, [FromQuery] string languageCode = "en")
-        {
-            var item = await _brandService.GetBrandContent(brandId, languageCode);
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            return Ok(item);
-        }
-
-        [HttpPut("updateBrandContent/{brandId}")]
-        [Authorize(Roles = "SystemAdmin")]
-        [ProducesResponseType(typeof(SuccessSingleResponse<CMSBrandContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
-        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
-        public async Task<ActionResult<IResponse>> UpdateBrandContent([FromRoute] int brandId, CMSBrandContentRequestDto requestDto, [FromQuery] string languageCode = "en")
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
-                var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
-                return BadRequest(response);
-            }
-
-            var item = await _brandService.UpdateBrandContent(brandId, requestDto, languageCode);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
-                return NotFound(item);
-
-            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
-                return BadRequest(item);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
 
 
-            return Ok(item);
-        }
+        //    return Ok(item);
+        //}
+
+
+
+        //[HttpGet("getBrands")]
+        ////[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessPaginationResponse<IEnumerable<CMSBrandWithContentResponseDto>>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetBrands([FromQuery] PaginationSpecParams paginationSpecParams)
+        //{
+        //    var item = await _brandService.GetBrands(paginationSpecParams);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpGet("getBrandById/{brandId}")]
+        //[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicBrandResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetBrand([FromRoute] int brandId)
+        //{
+        //    var item = await _brandService.GetBrand(brandId);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpGet("getBrandContent/{brandId}")]
+        //[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBrandContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        //public async Task<ActionResult<IResponse>> GetBrandContent([FromRoute] int brandId, [FromQuery] string languageCode = "en")
+        //{
+        //    var item = await _brandService.GetBrandContent(brandId, languageCode);
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    return Ok(item);
+        //}
+
+        //[HttpPut("updateBrandContent/{brandId}")]
+        //[Authorize(Roles = "SystemAdmin")]
+        //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBrandContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
+        //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
+        //public async Task<ActionResult<IResponse>> UpdateBrandContent([FromRoute] int brandId, CMSBrandContentRequestDto requestDto, [FromQuery] string languageCode = "en")
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var errors = ModelState.Values.SelectMany(y => y.Errors).Select(e => e.ErrorMessage).ToList();
+        //        var response = new FailResponse { ErrorMessages = errors, StatusCode = StatusCodeAndErrorsMessagesStandard.BadRequest, Status = false };
+        //        return BadRequest(response);
+        //    }
+
+        //    var item = await _brandService.UpdateBrandContent(brandId, requestDto, languageCode);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+        //        return NotFound(item);
+
+        //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
+        //        return BadRequest(item);
+
+
+        //    return Ok(item);
+        //}
 
 
 

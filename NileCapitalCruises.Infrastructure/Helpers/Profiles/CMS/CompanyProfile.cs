@@ -15,8 +15,8 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
         {
             /// Start Company
             CreateMap<CompanyRequestDto, Company>();
-            CreateMap<Company, BasicCompanyResponseDto>();
-            CreateMap<Company, CompanyWithContentResponseDto>().ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.Id))
+            CreateMap<Company, CMSBasicCompanyResponseDto>();
+            CreateMap<Company, CMSCompanyWithContentResponseDto>().ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.Id))
                 .AfterMap((src, dest) =>
                 {
                     if (src.CompanyContents.Count > 0)
@@ -25,8 +25,8 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
 
             /// Start Company Content
 
-            CreateMap<CompanyContent, CompanyContentResponseDto>();
-            CreateMap<CompanyContentRequestDto, CompanyContent>();
+            CreateMap<CompanyContent, CMSCompanyContentResponseDto>();
+            CreateMap<CMSCompanyContentRequestDto, CompanyContent>();
         }
     }
 }

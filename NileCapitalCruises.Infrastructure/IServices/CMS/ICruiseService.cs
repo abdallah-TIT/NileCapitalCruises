@@ -17,16 +17,16 @@ namespace NileCapitalCruises.Infrastructure.IServices.CMS
         Task<IResponse> GetCruises(int companyId, PaginationSpecParams paginationSpecParams);
         Task<IResponse> GetCruise(int cruiseId, int companyId);
         Task<IResponse> GetCruiseContent(int cruiseId, int companyId, string languageCode = "en");
-
-        Task<IResponse> UpdateCruiseContent(int cruiseId, int companyId, CruiseContentRequestDto requestDto, string languageCode = "en");
+        Task<IResponse> GetCruiseContents(int cruiseId, int companyId);
+        Task<IResponse> UpdateCruiseContent(int cruiseId, int companyId, CMSCruiseContentRequestDto requestDto, string languageCode = "en");
 
         //Task<IResponse> UpdateCruisePhotos(int cruiseId, int companyId, IEnumerable<CruisePhotoRequestDto> requestDto);
-        Task<IResponse> CreateCruisePhotos(int cruiseId, int companyId, IEnumerable<CruisePhotoRequestDto> requestDto);
+        Task<IResponse> CreateCruisePhotos(int cruiseId, int companyId, IEnumerable<CMSCruisePhotoRequestDto> requestDto);
         Task<IResponse> DeleteCruisePhoto(int photoId, int companyId);
         Task<IResponse> GetCruisePhotos(int cruiseId, int companyId);
         Task<IResponse> GetCruiseByUrlName(string cruiseUrl, string languageCode = "en");
-        Task<IResponse> CreateCruise(CruiseRequestDto requestDto, int companyId);
-        Task<IResponse> UpdateCruise(int cruiseId, int companyId, CruiseRequestDto requestDto);
+        Task<IResponse> CreateCruise(CMSCruiseRequestDto requestDto, int companyId);
+        Task<IResponse> UpdateCruise(int cruiseId, int companyId, CMSCruiseRequestDto requestDto);
         Task<IResponse> DeleteCruise(int cruiseId, int companyId);
         Task<IResponse> UpdatePatchCruise(int id, JsonPatchDocument model);
         Task<IResponse> UpdatePatchCruiseContent(int id, string languageCode, JsonPatchDocument model);

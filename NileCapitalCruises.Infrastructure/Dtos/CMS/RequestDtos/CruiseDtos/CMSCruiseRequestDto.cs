@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CruiseDtos
 {
-    public class CruiseRequestDto
+    public class CMSCruiseRequestDto
     {
         public int? CruiseLocationId { get; set; }
         //public string? CruiseUsername { get; set; }

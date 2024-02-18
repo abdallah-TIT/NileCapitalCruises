@@ -17,19 +17,12 @@ namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CompanyDtos
 
         
 
-        [MaxLength(250)]
-        public string? Logo { get; set; }
-
-        public DateTime? StartDate { get; set; }
+        
         public DateTime? SubscriptionStartDate { get; set; }
         public DateTime? SubscriptionEndDate { get; set; }
-        [MaxLength(50)]
-        public string? ContactPersonEmail { get; set; }
+        
 
-        [MaxLength(50)]
-        public string? ContactPersonPhone { get; set; }
-
-        public bool? Status { get; set; }
+        
 
     }
 }

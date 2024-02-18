@@ -22,7 +22,7 @@ namespace NileCapitalCruises.Core.Models
         [MaxLength(10)]
         public string? LanguageAbbreviation { get; set; }
 
-        public bool? Status { get; set; } = false;
+        public bool? LangStatus { get; set; } = false;
 
         [MaxLength(250)]
         public string? LanguageClass { get; set; } = "Empty String please change it";

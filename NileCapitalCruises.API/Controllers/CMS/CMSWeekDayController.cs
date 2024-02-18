@@ -6,6 +6,7 @@ using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -44,8 +45,22 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
+        [HttpGet("getWeekdays")]
+        //[Authorize(Roles = "SystemAdmin")]
+        [ProducesResponseType(typeof(SuccessPaginationResponse<BasicWeekDayResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        public async Task<ActionResult<IResponse>> GetWeekDays([FromQuery] PaginationSpecParams paginationSpecParams)
+        {
+            var item = await _weekDayService.GetWeekdays(paginationSpecParams);
 
-        
+            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+                return NotFound(item);
+
+            return Ok(item);
+        }
+
 
 
     }

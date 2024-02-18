@@ -15,6 +15,10 @@ using NileCapitalCruises.Infrastructure.IServices;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Http;
 using System.Transactions;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.BrandSpecification;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.BrandDtos;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.DurationSpecification;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {
@@ -67,6 +71,27 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
                     return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.ItemNotCreated }, StatusCodeAndErrorsMessagesStandard.InternalServerError);
                 }
             }
+        }
+
+        public async Task<IResponse> GetDurations(PaginationSpecParams paginationSpecParams)
+        {
+            var spec = new DurationSpecification(paginationSpecParams);
+            var countSpec = new DurationWithFiltersForCountSpecification(paginationSpecParams);
+            var totalItems = await _durationRepo.CountAsync(countSpec);
+            var items = await _durationRepo.ListAsync(spec);
+            if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
+
+
+            var data = _mapper.Map<IReadOnlyList<BasicDurationResponseDto>>(items);
+
+            return SuccessPaginationResponse<BasicDurationResponseDto>.Success(
+                    data != null,
+                    StatusCodeAndErrorsMessagesStandard.OK,
+                    data,
+                    paginationSpecParams.PageIndex,
+                    paginationSpecParams.PageSize,
+                    totalItems
+                );
         }
 
 

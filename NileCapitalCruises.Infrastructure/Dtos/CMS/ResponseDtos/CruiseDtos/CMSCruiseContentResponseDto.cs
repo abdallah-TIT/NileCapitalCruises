@@ -1,9 +1,10 @@
 ﻿namespace NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CruiseDtos
 {
-    public class CruiseContentResponseDto
+    public class CMSCruiseContentResponseDto
     {
        
-        public int? OriginalTableId { get; set; }
+        public int? CruiseContentId { get; set; }
+        public int? CruiseId { get; set; }
         public int? LanguageId { get; set; }
         public bool? ContentLangStatus { get; set; }
 

@@ -2,12 +2,7 @@
 using AutoMapper;
 using NileCapitalCruises.Core.IRepositories;
 using NileCapitalCruises.Core.Models;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CityDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CompanyDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.DurationDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CompanyDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryDtos;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.Helpers.Utils;
@@ -15,14 +10,8 @@ using NileCapitalCruises.Infrastructure.IServices;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Http;
 using System.Transactions;
-using NileCapitalCruises.Infrastructure.Data.Specification.CMS.CruiseSpecification;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CruiseDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CruiseDtos;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS.ItinerarySpecification;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
-using System.Security.Claims;
-using NileCapitalCruises.Infrastructure.Data.Specification.CMS.CompanySpecification;
-using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.ItineraryDtos;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {

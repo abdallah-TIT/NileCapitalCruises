@@ -17,6 +17,13 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.CMS.ItinerarySpec
 
 
             AddInclude(x => x.ItineraryContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.Duration);
+            AddInclude(x => x.Company.CompanyContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.Cruise.CruiseContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.ItineraryType.ItineraryTypeContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.WeekDay.WeekDayContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.CityFrom.CityContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
+            AddInclude(x => x.CityTo.CityContents.Where(c => c.Language.LanguageAbbreviation == paginationSpecParams.LanguageCode));
         }
 
         public CMSItinerarySpecification(int itineraryId, int companyId) : base(x => x.Id == itineraryId && x.CompanyId == companyId && x.IsDeleted == false)

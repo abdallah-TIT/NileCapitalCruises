@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CruiseDtos
 {
-    public class CruiseContentRequestDto
+    public class CMSCruiseContentRequestDto
     {
        
         public bool? ContentLangStatus { get; set; }
