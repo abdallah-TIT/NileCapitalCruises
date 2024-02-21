@@ -8,7 +8,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.Iti
     {
         private readonly IMapper _mapper;
 
-        public ItinerarySpecification(int? itineraryTypeId,int? maximumAdults,int? maximumChildren, int? operationDay, int? operationMonth, int? operationYear,string languageCode) : base(
+        public ItinerarySpecification(int periodId,int? itineraryTypeId,int? maximumAdults,int? maximumChildren, int? operationDay, int? operationMonth, int? operationYear,string languageCode) : base(
             x => x.IsDeleted == false
             && x.OperationDates.Any(op => op.OperationDay == operationDay && op.OperationMonth == operationMonth && op.OperationYear == operationYear)
             && x.ItineraryTypeId == itineraryTypeId
@@ -19,6 +19,10 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.Iti
             AddInclude(x => x.ItineraryContents.Where(c => c.Language.LanguageAbbreviation == languageCode));
             AddInclude(x => x.Cruise.CruiseContents.Where(c => c.Language.LanguageAbbreviation == languageCode));
             AddInclude(x => x.Cruise.CruisePhotos);
+            AddInclude(x => x.ItineraryType.CabinTypeCruiseItineraryTypePeriodRates.Where(cr => cr.CabinTypeCruise.CruiseId == x.CruiseId &&
+            cr.PeriodId == periodId));
+
+
 
         }
 

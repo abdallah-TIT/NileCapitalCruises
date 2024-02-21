@@ -3,6 +3,7 @@ using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CompanyDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.DiningTypeDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.LanguageDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.OperationDateDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.PeriodDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.WeekDayDtos;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 

@@ -12,6 +12,12 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
             CreateMap<CabinTypeCruiseRequestDto, CabinTypeCruise>();
             CreateMap<CabinTypeCruise, BasicCabinTypeCruiseResponseDto>();
 
+            CreateMap<CabinTypeCruise, CMSCabinTypeCruiseWithContentResponseDto>()
+                .ForMember(dest => dest.CabinTypeCruiseId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.CabinTypeNameSys, opt => opt.MapFrom(src => src.CabinType.CabinTypeNameSys))
+                .ForMember(dest => dest.CabinTypeName, opt => opt.MapFrom(src => src.CabinType.CabinTypeContents.FirstOrDefault().CabinTypeName));
+
+
         }
     }
 }

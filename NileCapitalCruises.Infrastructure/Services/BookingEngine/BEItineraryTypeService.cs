@@ -7,7 +7,6 @@ using NileCapitalCruises.Infrastructure.IServices.BookingEngine;
 using NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.ItineraryTypeSpecification;
 using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.ItineraryTypeDtos;
 using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.OperationDateDtos;
-using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.ItineraryDtos;
 using NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.OperationDateSpecification;
 
 
@@ -45,7 +44,13 @@ namespace NileCapitalCruises.Infrastructure.Services.BookingEngine
             var opItems = await _operationDateRepo.ListAsync(specOp);
             var opItemsDTO = _mapper.Map<IReadOnlyList<BEBasicOperationDateResponseDto>>(opItems);
 
-            var data = items.Select(i => new ItineraryTypeWithContentResponseDto() 
+            //var itineraryTypeIdsWithOperationDates = opItems
+            //                                .Select(op => op.Itinerary.ItineraryTypeId)
+            //                                .Distinct();
+
+
+            var data = items./*Where(it => itineraryTypeIdsWithOperationDates.Contains(it.Id)).*/
+                Select(i => new ItineraryTypeWithContentResponseDto() 
             {
                 ItineraryTypeId = i.Id,
                 ItineraryTypeNameSys = i.ItineraryTypeNameSys,

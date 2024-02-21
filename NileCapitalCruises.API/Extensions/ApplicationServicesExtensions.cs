@@ -34,6 +34,8 @@ namespace NileCapitalCruises.API.Extensions
             services.AddScoped<ICabinAmenityService, CabinAmenityService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IPeriodService, PeriodService>();
+            services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<CMSIItineraryService, CMSItineraryService>();
             services.AddScoped<IWeekDayService, WeekDayService>();
             services.AddScoped<CMSIDurationService, CMSDurationService>();

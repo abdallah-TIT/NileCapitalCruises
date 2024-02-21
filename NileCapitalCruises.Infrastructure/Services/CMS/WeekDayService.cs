@@ -14,6 +14,7 @@ using NileCapitalCruises.Infrastructure.Data.Specification.CMS.DurationSpecifica
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.DurationDtos;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS.WeekDaySpecification;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.SeasonDtos;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {

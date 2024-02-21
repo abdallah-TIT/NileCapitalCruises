@@ -9,5 +9,7 @@ namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryTypeDt
         [MaxLength(150)]
         public string? ItineraryTypeName { get; set; }
 
+        public bool? ContentLangStatus { get; set; } 
+
     }
 }

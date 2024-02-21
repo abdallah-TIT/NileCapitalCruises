@@ -15,7 +15,7 @@ namespace NileCapitalCruises.Core.Models
         public Rate()
         {
             RateContents = new HashSet<RateContent>();
-            CabinTypeCruisePeriodRates = new HashSet<CabinTypeCruisePeriodRate>();
+            CabinTypeCruiseItineraryTypePeriodRates = new HashSet<CabinTypeCruiseItineraryTypePeriodRate>();
         }
 
 
@@ -48,6 +48,6 @@ namespace NileCapitalCruises.Core.Models
 
 
         [InverseProperty("Rate")]
-        public virtual ICollection<CabinTypeCruisePeriodRate> CabinTypeCruisePeriodRates { get; set; }
+        public virtual ICollection<CabinTypeCruiseItineraryTypePeriodRate> CabinTypeCruiseItineraryTypePeriodRates { get; set; }
     }
 }

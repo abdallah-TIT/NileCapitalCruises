@@ -14,6 +14,7 @@ using System.Transactions;
 using NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.ItineraryTypeSpecification;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS.ItineraryTypeSpecification;
 using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.ItineraryTypeDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS

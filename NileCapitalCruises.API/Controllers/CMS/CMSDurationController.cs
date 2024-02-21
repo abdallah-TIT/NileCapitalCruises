@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
 using NileCapitalCruises.Infrastructure.Services.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {

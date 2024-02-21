@@ -25,6 +25,9 @@ namespace NileCapitalCruises.Core.Models
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
+        [MaxLength(250)]
+        public string? SeasonUrl { get; set; }
+
         public bool? IsDeleted { get; set; } = false;
         public virtual ICollection<SeasonContent> SeasonContents { get; set; }
         public virtual ICollection<Period> Periods { get; set; }

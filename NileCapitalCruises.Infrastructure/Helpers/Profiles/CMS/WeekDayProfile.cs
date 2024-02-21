@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using NileCapitalCruises.Core.Models;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.SeasonDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.WeekDayDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.WeekDayDtos;
 

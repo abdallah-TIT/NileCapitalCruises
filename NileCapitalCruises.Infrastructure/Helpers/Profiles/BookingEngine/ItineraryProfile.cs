@@ -23,6 +23,7 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.BookingEngine
                .ForMember(dest => dest.CruiseMainPhotoHieght, opt => opt.MapFrom(src => src.Cruise.CruisePhotoHeight))
                .ForMember(dest => dest.CruiseMainPhotoWidth, opt => opt.MapFrom(src => src.Cruise.CruisePhotoWidth))
                .ForMember(dest => dest.CruisePhotos, opt => opt.MapFrom(src => src.Cruise.CruisePhotos))
+               .ForMember(dest => dest.LowerPrice, opt => opt.MapFrom(src => src.ItineraryType.CabinTypeCruiseItineraryTypePeriodRates.OrderBy(rate => rate.Price).FirstOrDefault().Price))
                 .AfterMap((src, dest) =>
                 {
                     if (src.ItineraryContents.Count > 0)

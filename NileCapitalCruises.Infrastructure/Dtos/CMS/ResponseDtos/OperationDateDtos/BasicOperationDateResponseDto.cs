@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CabinTypeCruiseOperationDateDtos;
+using System.ComponentModel.DataAnnotations;
 
 namespace NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.OperationDateDtos
 {
@@ -11,9 +12,12 @@ namespace NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.OperationDateD
 
         public string? OperationDateUrl { get; set; }
 
-        public DateTime? Operation_Date;
         public int? OperationDay { get; set; }
         public int? OperationMonth { get; set; }
         public int? OperationYear { get; set; }
+
+        public DateTime? Operation_Date { get; set; }
+
+        public IEnumerable<BasicCabinTypeCruiseOperationDateResponseDto> CabinTypeCruiseOperationDates { get; set; }
     }
 }

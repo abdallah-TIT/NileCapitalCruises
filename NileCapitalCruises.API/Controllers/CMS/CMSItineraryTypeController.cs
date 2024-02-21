@@ -13,6 +13,7 @@ using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CruiseDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -51,7 +52,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPut("updateItineraryType/{itineraryTypeId}")]
+        [HttpPost("updateItineraryType/{itineraryTypeId}")]
         //[Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicItineraryTypeResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -79,7 +80,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpDelete("deleteItineraryType/{itineraryTypeId}")]
+        [HttpPost("deleteItineraryType/{itineraryTypeId}")]
         //[Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -167,7 +168,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPut("updateItineraryTypeContent/{itineraryTypeId}")]
+        [HttpPost("updateItineraryTypeContent/{itineraryTypeId}")]
         //[Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSItineraryTypeContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]

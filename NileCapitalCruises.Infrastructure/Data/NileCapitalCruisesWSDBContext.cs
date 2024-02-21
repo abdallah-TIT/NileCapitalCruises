@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NileCapitalCruises.Core.Models.Views;
 
 namespace NileCapitalCruises.Infrastructure.Data
 {
@@ -19,6 +20,12 @@ namespace NileCapitalCruises.Infrastructure.Data
         {
         }
 
+        /// start Views
+        /// 
+        public DbSet<VwOperationDateCabinType> VwOperationDateCabinTypes { get; set; }
+
+
+        /// start tables
         public virtual DbSet<AspstateTempApplication> AspstateTempApplications { get; set; } = null!;
         public virtual DbSet<AspstateTempSession> AspstateTempSessions { get; set; } = null!;
 
@@ -107,7 +114,7 @@ namespace NileCapitalCruises.Infrastructure.Data
 
         public virtual DbSet<Rate> Rates { get; set; } = null!;
         public virtual DbSet<RateContent> RateContents { get; set; } = null!;
-        public virtual DbSet<CabinTypeCruisePeriodRate> CabinTypeCruisePeriodRates { get; set; } = null!;
+        public virtual DbSet<CabinTypeCruiseItineraryTypePeriodRate> CabinTypeCruiseItineraryTypePeriodRates { get; set; } = null!;
 
 
         public virtual DbSet<ItineraryDay> ItineraryDays { get; set; } = null!;

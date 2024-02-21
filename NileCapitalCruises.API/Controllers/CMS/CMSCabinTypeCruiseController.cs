@@ -4,6 +4,9 @@ using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
+using NileCapitalCruises.Infrastructure.Services.CMS;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -41,6 +44,20 @@ namespace NileCapitalCruises.API.Controllers.CMS
         //    return Ok(item);
         //}
 
+        [HttpGet("getCabinTypeCruises")]
+        //[Authorize(Roles = "SystemAdmin")]
+        [ProducesResponseType(typeof(SuccessPaginationResponse<CMSCabinTypeCruiseWithContentResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
+        [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
+        public async Task<ActionResult<IResponse>> GetCabinTypeCruises([FromQuery] PaginationSpecParams paginationSpecParams, int cruiseId, int companyId)
+        {
+            var item = await _cabinTypeCruiseService.GetCabinTypeCruises(cruiseId, companyId, paginationSpecParams);
 
+            if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
+                return NotFound(item);
+
+            return Ok(item);
+        }
     }
 }

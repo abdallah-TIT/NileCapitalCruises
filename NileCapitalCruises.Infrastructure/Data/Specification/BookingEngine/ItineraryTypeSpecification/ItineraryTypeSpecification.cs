@@ -12,6 +12,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.Iti
 
         public ItineraryTypeSpecification(string languageCode) : base(
             x => x.IsDeleted == false
+            && x.Itineraries.Any(it => it.OperationDates.Any(op => op.ItineraryId == it.Id))
             )
         {
             

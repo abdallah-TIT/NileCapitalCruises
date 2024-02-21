@@ -6,6 +6,7 @@ using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.DurationDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CompanyDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS
 {

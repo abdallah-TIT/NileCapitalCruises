@@ -2,17 +2,16 @@
 using AutoMapper;
 using NileCapitalCruises.Core.IRepositories;
 using NileCapitalCruises.Core.Models;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CityDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.OperationDateDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CityDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.OperationDateDtos;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
-using NileCapitalCruises.Infrastructure.Helpers.Utils;
 using NileCapitalCruises.Infrastructure.IServices;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Http;
 using System.Transactions;
 using System.Globalization;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.OperationDateSpecification;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {
@@ -215,6 +214,26 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
             }
         }
 
+        public async Task<IResponse> GetOperationDates(int itineraryId, PaginationSpecParams paginationSpecParams)
+        {
 
+            var spec = new CMSOperationDateSpecification(paginationSpecParams, itineraryId);
+            var countSpec = new CMSOperationDateWithFiltersForCountSpecification(paginationSpecParams, itineraryId);
+            var totalItems = await _operationDateRepo.CountAsync(countSpec);
+            var items = await _operationDateRepo.ListAsync(spec);
+            if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
+
+
+            var data = _mapper.Map<IReadOnlyList<BasicOperationDateResponseDto>>(items);
+
+            return SuccessPaginationResponse<BasicOperationDateResponseDto>.Success(
+                    data != null,
+                    StatusCodeAndErrorsMessagesStandard.OK,
+                    data,
+                    paginationSpecParams.PageIndex,
+                    paginationSpecParams.PageSize,
+                    totalItems
+                );
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.Ope
         {
            
             AddInclude(x => x.WeekDay);
+            AddInclude(x => x.Itinerary);
 
         }
 

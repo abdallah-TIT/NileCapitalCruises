@@ -2,14 +2,8 @@
 using NileCapitalCruises.Core.IRepositories;
 using NileCapitalCruises.Core.Models;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
-using NileCapitalCruises.Infrastructure.Helpers.Utils;
 using NileCapitalCruises.Infrastructure.IServices.BookingEngine;
-using NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.ItineraryTypeSpecification;
-using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.ItineraryTypeDtos;
-using NileCapitalCruises.Infrastructure.IServices.CMS;
 using NileCapitalCruises.Infrastructure.Data.Specification.BookingEngine.OperationDateSpecification;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.DiningTypeDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.OperationDateDtos;
 using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.OperationDateDtos;
 
 

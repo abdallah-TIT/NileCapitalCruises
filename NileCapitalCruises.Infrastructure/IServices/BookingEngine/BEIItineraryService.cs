@@ -5,7 +5,6 @@ namespace NileCapitalCruises.Infrastructure.IServices.BookingEngine
 {
     public interface BEIItineraryService
     {
-        Task<IResponse> GetItineraries(int? itineraryTypeId, int? maximumAdults, int? maximumChildren, int? operationDay, int? operationMonth, int? operationYear, string languageCode = "en");
-
+        Task<IResponse> GetItineraries(int? itineraryTypeId, string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en");
     }
 }

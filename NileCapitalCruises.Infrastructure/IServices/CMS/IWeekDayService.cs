@@ -1,4 +1,5 @@
 ﻿using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.SeasonDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.WeekDayDtos;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 

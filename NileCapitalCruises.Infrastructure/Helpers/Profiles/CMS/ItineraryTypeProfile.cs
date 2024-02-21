@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using NileCapitalCruises.Core.Models;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CompanyDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryTypeDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CompanyDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryTypeDtos;
 
 namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.CMS

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.ItineraryTypeDtos;
 using NileCapitalCruises.Infrastructure.Services.BookingEngine;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
@@ -55,7 +56,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpPut("updateCruise/{cruiseId}")]
+        [HttpPost("updateCruise/{cruiseId}")]
         [Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCruiseResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -84,7 +85,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        [HttpDelete("deleteCruise/{cruiseId}")]
+        [HttpPost("deleteCruise/{cruiseId}")]
         [Authorize(Roles = "SystemAdmin")]
 
         [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
@@ -194,7 +195,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
             return Ok(item);
         }
 
-        [HttpPut("updateCruiseContent/{cruiseId}")]
+        [HttpPost("updateCruiseContent/{cruiseId}")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)]
@@ -265,7 +266,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         }
 
 
-        [HttpDelete("deleteCruisePhoto/{photoId}")]
+        [HttpPost("deleteCruisePhoto/{photoId}")]
         [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
@@ -282,7 +283,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        [HttpDelete("deleteCruisePhotos/{cruiseId}")]
+        [HttpPost("deleteCruisePhotos/{cruiseId}")]
         [ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized

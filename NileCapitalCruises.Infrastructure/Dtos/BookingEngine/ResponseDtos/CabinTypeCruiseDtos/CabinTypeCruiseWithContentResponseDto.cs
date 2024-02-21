@@ -8,6 +8,8 @@
 
         public string? CabinTypeName { get; set; }
 
+        public int? Price { get; set; }
+
         public int? Allotment { get; set; }
         public virtual IReadOnlyList<BECabinTypeCruisePhotoResponseDto> CabinTypeCruisePhotos { get; set; }
 

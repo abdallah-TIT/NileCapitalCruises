@@ -31,9 +31,9 @@ namespace NileCapitalCruises.API.Controllers.BookingEngine
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetCabinTypes(string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en")
+        public async Task<ActionResult<IResponse>> GetCabinTypes(int itineraryTypeId, int cruiseId, string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en")
         {
-            var item = await _cabinTypeCruiseService.GetCabinTypeCruises(operationDate, maximumAdults, maximumChildren, languageCode);
+            var item = await _cabinTypeCruiseService.GetCabinTypeCruises(itineraryTypeId, cruiseId, operationDate, maximumAdults, maximumChildren, languageCode);
 
             if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
                 return NotFound(item);

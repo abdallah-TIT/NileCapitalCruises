@@ -278,7 +278,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("tbl_CruiseBooking_Companies_Users", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Companies_Users");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Amenity", b =>
@@ -318,7 +318,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Amenities", (string)null);
+                    b.ToTable("tbl_Master_Amenities");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.AmenityContent", b =>
@@ -352,7 +352,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_Amenities_Content_LangId");
 
-                    b.ToTable("tbl_Master_Amenities_Contents", (string)null);
+                    b.ToTable("tbl_Master_Amenities_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.AspstateTempApplication", b =>
@@ -466,7 +466,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_CruiseBooking_Brands", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Brands");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.BrandContent", b =>
@@ -516,7 +516,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Brands_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Brands_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Brands_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Cabin", b =>
@@ -602,7 +602,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Cabins_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Cabins", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cabins");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinAmenity", b =>
@@ -628,7 +628,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("CabinId");
 
-                    b.ToTable("tbl_CruiseBooking_Cabins_Amenities", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cabins_Amenities");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinContent", b =>
@@ -670,7 +670,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Cabins_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Cabins_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cabins_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinPhoto", b =>
@@ -707,7 +707,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CabinId" }, "IX_tbl_CruiseBooking_Cabins_Photos_CabinId");
 
-                    b.ToTable("tbl_CruiseBooking_Cabins_Photos", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cabins_Photos");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinStatus", b =>
@@ -727,7 +727,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_CabinStatuses", (string)null);
+                    b.ToTable("tbl_Master_CabinStatuses");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinStatusContent", b =>
@@ -761,7 +761,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_CabinStatuses_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_CabinStatuses_Contents", (string)null);
+                    b.ToTable("tbl_Master_CabinStatuses_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinType", b =>
@@ -785,7 +785,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Cabins_Types", (string)null);
+                    b.ToTable("tbl_Master_Cabins_Types");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeContent", b =>
@@ -822,7 +822,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_Cabins_Types_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_Cabins_Types_Contents", (string)null);
+                    b.ToTable("tbl_Master_Cabins_Types_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruise", b =>
@@ -860,7 +860,46 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_CabinTypes_Cruises", (string)null);
+                    b.ToTable("tbl_CruiseBooking_CabinTypes_Cruises");
+                });
+
+            modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruiseItineraryTypePeriodRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CabinTypeCruiseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ItineraryTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PeriodId")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("RateId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CabinTypeCruiseId");
+
+                    b.HasIndex("ItineraryTypeId");
+
+                    b.HasIndex("PeriodId");
+
+                    b.HasIndex("RateId");
+
+                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_ItineraryType_Periods_Rates");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruiseOperationDate", b =>
@@ -889,41 +928,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("OperationDateId");
 
-                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_OperationDates", (string)null);
-                });
-
-            modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruisePeriodRate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CabinTypeCruiseId")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("PeriodId")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("Price")
-                        .HasColumnType("real");
-
-                    b.Property<int?>("RateId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CabinTypeCruiseId");
-
-                    b.HasIndex("PeriodId");
-
-                    b.HasIndex("RateId");
-
-                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_Periods_Rates", (string)null);
+                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_OperationDates");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruisePhoto", b =>
@@ -960,7 +965,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CabinTypeCruiseId" }, "IX_tbl_CruiseBooking_CabinTypesCruises_Photos_CabinTypeCruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_Photos", (string)null);
+                    b.ToTable("tbl_CruiseBooking_CabinTypesCruises_Photos");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.City", b =>
@@ -1007,7 +1012,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Cities", (string)null);
+                    b.ToTable("tbl_Master_Cities");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CityContent", b =>
@@ -1041,7 +1046,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_Cities_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_Cities_Contents", (string)null);
+                    b.ToTable("tbl_Master_Cities_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Company", b =>
@@ -1092,7 +1097,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_CruiseBooking_Companies", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Companies");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CompanyContent", b =>
@@ -1134,7 +1139,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Companies_Content_LanguageId");
 
-                    b.ToTable("tbl_CruiseBooking_Companies_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Companies_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CompanyUserCruise", b =>
@@ -1160,7 +1165,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_CompanyUsers_Cruises", (string)null);
+                    b.ToTable("tbl_CruiseBooking_CompanyUsers_Cruises");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Country", b =>
@@ -1207,7 +1212,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_CruiseBooking_Countries", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Countries");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CountryContent", b =>
@@ -1241,7 +1246,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Countries_Contents_LanguageId");
 
-                    b.ToTable("tbl_CruiseBooking_Countries_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Countries_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Cruise", b =>
@@ -1480,7 +1485,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("CruiseCategoryId");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CruiseCategory", b =>
@@ -1508,7 +1513,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises_Categories", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises_Categories");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CruiseCategoryContent", b =>
@@ -1542,7 +1547,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Cruises_Categories_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises_Categories_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises_Categories_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CruiseContent", b =>
@@ -1608,7 +1613,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Cruises_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CruiseFacility", b =>
@@ -1634,7 +1639,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("FacilityId");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises_Facilties", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises_Facilties");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CruisePhoto", b =>
@@ -1671,7 +1676,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Cruises_Photos_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Cruises_Photos", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Cruises_Photos");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Deck", b =>
@@ -1709,7 +1714,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Decks_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Decks", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Decks");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DeckContent", b =>
@@ -1743,7 +1748,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Decks_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Decks_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Decks_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Destination", b =>
@@ -1944,7 +1949,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("tbl_CruiseBooking_Destinations", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Destinations");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DestinationContent", b =>
@@ -1994,7 +1999,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Destinations_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Destinations_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Destinations_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Dining", b =>
@@ -2059,7 +2064,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("DiningTypeId");
 
-                    b.ToTable("tbl_CruiseBooking_Dinings", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Dinings");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DiningContent", b =>
@@ -2097,7 +2102,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Dinings_Content_LangId");
 
-                    b.ToTable("tbl_CruiseBooking_Dinings_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Dinings_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DiningPhoto", b =>
@@ -2134,7 +2139,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "DiningId" }, "IX_tbl_CruiseBooking_Dinings_Photos_DiningId");
 
-                    b.ToTable("tbl_CruiseBooking_Dinings_Photos", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Dinings_Photos");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DiningType", b =>
@@ -2158,7 +2163,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Dinings_Types", (string)null);
+                    b.ToTable("tbl_Master_Dinings_Types");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.DiningTypeContent", b =>
@@ -2192,7 +2197,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_DiningTypes_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_DiningTypes_Contents", (string)null);
+                    b.ToTable("tbl_Master_DiningTypes_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Duration", b =>
@@ -2217,7 +2222,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Durations", (string)null);
+                    b.ToTable("tbl_Master_Durations");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Facility", b =>
@@ -2241,7 +2246,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Facilties", (string)null);
+                    b.ToTable("tbl_Master_Facilties");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.FacilityContent", b =>
@@ -2276,7 +2281,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_Facilties_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_Facilties_Contents", (string)null);
+                    b.ToTable("tbl_Master_Facilties_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Itinerary", b =>
@@ -2346,7 +2351,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Itineraries_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Itineraries", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Itineraries");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryContent", b =>
@@ -2385,7 +2390,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Itineraries_Contents_LanguageId");
 
-                    b.ToTable("tbl_CruiseBooking_Itineraries_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Itineraries_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryDay", b =>
@@ -2417,7 +2422,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("WeekDayId");
 
-                    b.ToTable("tbl_CruiseBooking_Itineraries_Days", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Itineraries_Days");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryDayContent", b =>
@@ -2460,7 +2465,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_CruiseBooking_Itineraries_Days_Contents_LanguageId");
 
-                    b.ToTable("tbl_CruiseBooking_Itineraries_Days_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Itineraries_Days_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryPhoto", b =>
@@ -2497,7 +2502,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "ItineraryId" }, "IX_tbl_CruiseBooking_Itineraries_Photos_ItineraryId");
 
-                    b.ToTable("tbl_CruiseBooking_Itineraries_Photos", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Itineraries_Photos");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryType", b =>
@@ -2537,7 +2542,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex("SailTo");
 
-                    b.ToTable("tbl_Master_Itineraries_Types", (string)null);
+                    b.ToTable("tbl_Master_Itineraries_Types");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryTypeContent", b =>
@@ -2571,7 +2576,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "LanguageId" }, "IX_tbl_Master_Itineraries_Types_Contents_LanguageId");
 
-                    b.ToTable("tbl_Master_Itineraries_Types_Contents", (string)null);
+                    b.ToTable("tbl_Master_Itineraries_Types_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Language", b =>
@@ -2583,6 +2588,9 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("LangStatus")
                         .HasColumnType("bit");
 
                     b.Property<string>("LanguageAbbreviation")
@@ -2601,12 +2609,9 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool?>("Status")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_Languages", (string)null);
+                    b.ToTable("tbl_Master_Languages");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.OperationDate", b =>
@@ -2666,7 +2671,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "WeekDayId" }, "IX_tbl_CruiseBooking_OperationDates_WeekDayId");
 
-                    b.ToTable("tbl_CruiseBooking_OperationDates", (string)null);
+                    b.ToTable("tbl_CruiseBooking_OperationDates");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Period", b =>
@@ -2690,6 +2695,10 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("PeriodUrl")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<int?>("SeasonId")
                         .HasColumnType("int");
 
@@ -2702,7 +2711,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "SeasonId" }, "IX_tbl_CruiseBooking_Periods_SeasonId");
 
-                    b.ToTable("tbl_CruiseBooking_Periods", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Periods");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.PeriodContent", b =>
@@ -2712,6 +2721,9 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("ContentLangStatus")
+                        .HasColumnType("bit");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
@@ -2739,7 +2751,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "OriginalTableId" }, "IX_tbl_CruiseBooking_Periods_Contents_PeriodId");
 
-                    b.ToTable("tbl_CruiseBooking_Periods_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Periods_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Rate", b =>
@@ -2781,7 +2793,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Rates_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Rates", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Rates");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.RateContent", b =>
@@ -2815,7 +2827,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "OriginalTableId" }, "IX_tbl_CruiseBooking_Rates_Contents_RateId");
 
-                    b.ToTable("tbl_CruiseBooking_Rates_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Rates_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Season", b =>
@@ -2839,6 +2851,10 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("SeasonUrl")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -2846,7 +2862,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "CruiseId" }, "IX_tbl_CruiseBooking_Seasons_CruiseId");
 
-                    b.ToTable("tbl_CruiseBooking_Seasons", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Seasons");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.SeasonContent", b =>
@@ -2880,7 +2896,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "OriginalTableId" }, "IX_tbl_CruiseBooking_Seasons_Contents_SeasonId");
 
-                    b.ToTable("tbl_CruiseBooking_Seasons_Contents", (string)null);
+                    b.ToTable("tbl_CruiseBooking_Seasons_Contents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.WeekDay", b =>
@@ -2908,7 +2924,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbl_Master_WeekDays", (string)null);
+                    b.ToTable("tbl_Master_WeekDays");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.WeekDayContent", b =>
@@ -2943,7 +2959,7 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
                     b.HasIndex(new[] { "OriginalTableId" }, "IX_tbl_Master_WeekDays_Contents_WeekDayId");
 
-                    b.ToTable("tbl_Master_WeekDays_Contents", (string)null);
+                    b.ToTable("tbl_Master_WeekDays_Contents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -3149,6 +3165,33 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                     b.Navigation("Cruise");
                 });
 
+            modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruiseItineraryTypePeriodRate", b =>
+                {
+                    b.HasOne("NileCapitalCruises.Core.Models.CabinTypeCruise", "CabinTypeCruise")
+                        .WithMany("CabinTypeCruiseItineraryTypePeriodRates")
+                        .HasForeignKey("CabinTypeCruiseId");
+
+                    b.HasOne("NileCapitalCruises.Core.Models.ItineraryType", "ItineraryType")
+                        .WithMany("CabinTypeCruiseItineraryTypePeriodRates")
+                        .HasForeignKey("ItineraryTypeId");
+
+                    b.HasOne("NileCapitalCruises.Core.Models.Period", "Period")
+                        .WithMany("CabinTypeCruiseItineraryTypePeriodRates")
+                        .HasForeignKey("PeriodId");
+
+                    b.HasOne("NileCapitalCruises.Core.Models.Rate", "Rate")
+                        .WithMany("CabinTypeCruiseItineraryTypePeriodRates")
+                        .HasForeignKey("RateId");
+
+                    b.Navigation("CabinTypeCruise");
+
+                    b.Navigation("ItineraryType");
+
+                    b.Navigation("Period");
+
+                    b.Navigation("Rate");
+                });
+
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruiseOperationDate", b =>
                 {
                     b.HasOne("NileCapitalCruises.Core.Models.CabinTypeCruise", "CabinTypeCruise")
@@ -3166,27 +3209,6 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
                     b.Navigation("CabinTypeCruise");
 
                     b.Navigation("OperationDate");
-                });
-
-            modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruisePeriodRate", b =>
-                {
-                    b.HasOne("NileCapitalCruises.Core.Models.CabinTypeCruise", "CabinTypeCruise")
-                        .WithMany("CabinTypeCruisePeriodRates")
-                        .HasForeignKey("CabinTypeCruiseId");
-
-                    b.HasOne("NileCapitalCruises.Core.Models.Period", "Period")
-                        .WithMany("CabinTypeCruisePeriodRates")
-                        .HasForeignKey("PeriodId");
-
-                    b.HasOne("NileCapitalCruises.Core.Models.Rate", "Rate")
-                        .WithMany("CabinTypeCruisePeriodRates")
-                        .HasForeignKey("RateId");
-
-                    b.Navigation("CabinTypeCruise");
-
-                    b.Navigation("Period");
-
-                    b.Navigation("Rate");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruisePhoto", b =>
@@ -3752,9 +3774,9 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.CabinTypeCruise", b =>
                 {
-                    b.Navigation("CabinTypeCruiseOperationDates");
+                    b.Navigation("CabinTypeCruiseItineraryTypePeriodRates");
 
-                    b.Navigation("CabinTypeCruisePeriodRates");
+                    b.Navigation("CabinTypeCruiseOperationDates");
 
                     b.Navigation("CabinTypeCruisePhotos");
                 });
@@ -3861,6 +3883,8 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.ItineraryType", b =>
                 {
+                    b.Navigation("CabinTypeCruiseItineraryTypePeriodRates");
+
                     b.Navigation("Itineraries");
 
                     b.Navigation("ItineraryTypeContents");
@@ -3873,14 +3897,14 @@ namespace NileCapitalCruises.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Period", b =>
                 {
-                    b.Navigation("CabinTypeCruisePeriodRates");
+                    b.Navigation("CabinTypeCruiseItineraryTypePeriodRates");
 
                     b.Navigation("PeriodContents");
                 });
 
             modelBuilder.Entity("NileCapitalCruises.Core.Models.Rate", b =>
                 {
-                    b.Navigation("CabinTypeCruisePeriodRates");
+                    b.Navigation("CabinTypeCruiseItineraryTypePeriodRates");
 
                     b.Navigation("RateContents");
                 });

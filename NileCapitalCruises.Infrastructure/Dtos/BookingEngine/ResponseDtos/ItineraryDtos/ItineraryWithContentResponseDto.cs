@@ -21,6 +21,7 @@
         public string? CruiseIntro { get; set; }
         public string? CruiseDetails { get; set; }
 
+        public int LowerPrice { get; set; }
 
         public virtual IReadOnlyList<BECruisePhotoResponseDto> CruisePhotos { get; set; }
 

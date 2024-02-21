@@ -51,7 +51,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        [HttpPut("updateItinerary/{itineraryId}")]
+        [HttpPost("updateItinerary/{itineraryId}")]
         //[Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicItineraryResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -150,7 +150,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        [HttpPut("updateItineraryContent/{itineraryId}")]
+        [HttpPost("updateItineraryContent/{itineraryId}")]
         //[Authorize(Roles = "SystemAdmin")]
         [ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicItineraryResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]

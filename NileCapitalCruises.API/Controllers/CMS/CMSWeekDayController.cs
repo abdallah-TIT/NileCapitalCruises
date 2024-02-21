@@ -7,6 +7,7 @@ using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.SeasonDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {

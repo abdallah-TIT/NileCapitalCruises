@@ -17,12 +17,13 @@ namespace NileCapitalCruises.Core.Models
         {
 
             PeriodContents = new HashSet<PeriodContent>();
-            CabinTypeCruisePeriodRates = new HashSet<CabinTypeCruisePeriodRate>();
+            CabinTypeCruiseItineraryTypePeriodRates = new HashSet<CabinTypeCruiseItineraryTypePeriodRate>();
 
         }
 
-        
-        
+
+        [MaxLength(250)]
+        public string? PeriodUrl { get; set; }
 
         [MaxLength(150)]
         public string? PeriodNameSys { get; set; }
@@ -39,7 +40,7 @@ namespace NileCapitalCruises.Core.Models
         public virtual ICollection<PeriodContent> PeriodContents { get; set; }
 
         [InverseProperty("Period")]
-        public virtual ICollection<CabinTypeCruisePeriodRate> CabinTypeCruisePeriodRates { get; set; }
+        public virtual ICollection<CabinTypeCruiseItineraryTypePeriodRate> CabinTypeCruiseItineraryTypePeriodRates { get; set; }
         public bool? IsDeleted { get; set; } = false;
     }
 }

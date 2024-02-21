@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NileCapitalCruises.Core.Models
 {
-    [Table("tbl_CruiseBooking_CabinTypesCruises_Periods_Rates")]
-    public class CabinTypeCruisePeriodRate : BaseEntity
+    [Table("tbl_CruiseBooking_CabinTypesCruises_ItineraryType_Periods_Rates")]
+    public class CabinTypeCruiseItineraryTypePeriodRate : BaseEntity
     {
 
 
@@ -30,10 +30,12 @@ namespace NileCapitalCruises.Core.Models
 
 
 
+        public int? ItineraryTypeId { get; set; }
+        [ForeignKey(nameof(ItineraryTypeId))]
+        public virtual ItineraryType? ItineraryType { get; set; }
 
 
 
-               
 
 
         public float? Price { get; set; }

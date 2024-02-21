@@ -21,7 +21,9 @@ namespace NileCapitalCruises.Core.Models
         public int? OriginalTableId { get; set; }
 
         [MaxLength(150)]
-        public string? PeriodName { get; set; }
+        public string? PeriodName { get; set; } = "Empty String please change it";
+
+        public bool? ContentLangStatus { get; set; } = false;
 
         public virtual Language? Language { get; set; }
 

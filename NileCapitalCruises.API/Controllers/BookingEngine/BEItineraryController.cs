@@ -5,6 +5,7 @@ using NileCapitalCruises.Infrastructure.Dtos.BookingEngine.ResponseDtos.Operatio
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.IServices.BookingEngine;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Core.Models;
 
 namespace NileCapitalCruises.API.Controllers.BookingEngine
 {
@@ -30,9 +31,9 @@ namespace NileCapitalCruises.API.Controllers.BookingEngine
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Unauthorized)] // Unauthorized
         [ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)] // Forbidden
-        public async Task<ActionResult<IResponse>> GetItineraryies([FromQuery] int? itineraryTypeId,int? maximumAdults,int? maximumChildren, int? operationDay, int? operationMonth, int? operationYear, string languageCode = "en")
+        public async Task<ActionResult<IResponse>> GetItineraryies([FromQuery] int itineraryTypeId, string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en")
         {
-            var item = await _itineraryService.GetItineraries(itineraryTypeId,maximumAdults , maximumChildren, operationDay, operationMonth, operationYear,languageCode);
+            var item = await _itineraryService.GetItineraries(itineraryTypeId, operationDate,maximumAdults, maximumChildren,languageCode);
 
             if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
                 return NotFound(item);

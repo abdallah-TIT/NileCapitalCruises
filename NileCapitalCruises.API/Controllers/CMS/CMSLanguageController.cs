@@ -4,6 +4,8 @@ using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.PeriodDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.PeriodDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {

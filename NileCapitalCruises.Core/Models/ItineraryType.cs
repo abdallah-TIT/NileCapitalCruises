@@ -12,6 +12,7 @@ namespace NileCapitalCruises.Core.Models
         {
             ItineraryTypeContents = new HashSet<ItineraryTypeContent>();
             Itineraries = new HashSet<Itinerary>();
+            CabinTypeCruiseItineraryTypePeriodRates = new HashSet<CabinTypeCruiseItineraryTypePeriodRate>();
         }
 
         [MaxLength(150)]
@@ -34,6 +35,7 @@ namespace NileCapitalCruises.Core.Models
         public virtual ICollection<ItineraryTypeContent> ItineraryTypeContents { get; set; }
         public virtual ICollection<Itinerary> Itineraries { get; set; }
 
-
+        [InverseProperty("ItineraryType")]
+        public virtual ICollection<CabinTypeCruiseItineraryTypePeriodRate> CabinTypeCruiseItineraryTypePeriodRates { get; set; }
     }
 }

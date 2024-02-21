@@ -13,6 +13,8 @@ using NileCapitalCruises.Infrastructure.Helpers.Utils;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.EntityFrameworkCore;
 using System.Transactions;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.PeriodDtos;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.PeriodDtos;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {

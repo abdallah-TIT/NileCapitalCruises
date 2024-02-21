@@ -18,6 +18,7 @@ using System.Transactions;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS.CompanySpecification;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
 using NileCapitalCruises.Infrastructure.Data.Specification.CMS.CitySpecification;
+using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.SeasonDtos;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {

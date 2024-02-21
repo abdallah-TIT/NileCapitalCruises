@@ -6,6 +6,6 @@ namespace NileCapitalCruises.Infrastructure.IServices.BookingEngine
     public interface BEICabinTypeCruiseService
     {
         //Task<IResponse> GetCabinTypeCruises(int? cruiseId, int? maximumAdults, int? maximumChildren, int? operationDay, int? operationMonth, int? operationYear, string languageCode = "en");
-        Task<IResponse> GetCabinTypeCruises(string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en");
+         Task<IResponse> GetCabinTypeCruises(int itineraryTypeId, int cruiseId, string operationDate, int maximumAdults, int maximumChildren, string languageCode = "en");   
     }
 }

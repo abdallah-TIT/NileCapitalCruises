@@ -23,7 +23,6 @@ namespace NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.OperationDateDt
         [Required]
         public string EndDate { get; set; }
 
-        [Required]
         public int? EmbarcationCityId { get; set; }
 
 

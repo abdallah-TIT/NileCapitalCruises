@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Specification\CMS\Views\" />
     <Folder Include="Dtos\BookingEngine\RequestDtos\CabinsDtos\" />
     <Folder Include="Dtos\BookingEngine\RequestDtos\CruiseDtos\" />
     <Folder Include="Dtos\BookingEngine\ResponseDtos\CabinsDtos\" />

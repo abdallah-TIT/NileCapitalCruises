@@ -18,7 +18,7 @@ using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.ItineraryDtos;
 
 namespace NileCapitalCruises.API.Controllers.CMS
 {
-    //[Route("api/cms/company")]
+    [Route("api/cms/company")]
     [ApiController]
     public class CMSCompanyController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
             _companyService = companyService;
         }
 
-        
+
         //[HttpPost("createCompany")]
         ////[Authorize(Roles = "SystemAdmin")]
 
@@ -54,7 +54,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
 
 
-        //[HttpPut("updateCompany/{companyId}")]
+        //[HttpPost("updateCompany/{companyId}")]
         ////[Authorize(Roles = "SystemAdmin")]
         //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -76,13 +76,13 @@ namespace NileCapitalCruises.API.Controllers.CMS
 
         //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.BadRequest)
         //        return BadRequest(item);
-           
+
 
         //    return Ok(item);
         //}
 
 
-        //[HttpDelete("deleteCompany/{companyId}")]
+        //[HttpPost("deleteCompany/{companyId}")]
         ////[Authorize(Roles = "SystemAdmin")]
         //[ProducesResponseType(typeof(BaseSuccessResponse), StatusCodeAndErrorsMessagesStandard.OK)]
         //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]
@@ -90,7 +90,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.Forbidden)]
         //public async Task<ActionResult<IResponse>> DeleteCompany([FromRoute] int companyId)
         //{
-           
+
         //    var item = await _companyService.DeleteCompany(companyId);
 
         //    if (item.StatusCode == StatusCodeAndErrorsMessagesStandard.NotFound)
@@ -151,7 +151,7 @@ namespace NileCapitalCruises.API.Controllers.CMS
         //    return Ok(item);
         //}
 
-        //[HttpPut("updateCompanyContent/{companyId}")]
+        //[HttpPost("updateCompanyContent/{companyId}")]
         ////[Authorize(Roles = "SystemAdmin")]
         //[ProducesResponseType(typeof(SuccessSingleResponse<CMSBasicCompanyResponseDto>), StatusCodeAndErrorsMessagesStandard.OK)]
         //[ProducesResponseType(typeof(FailResponse), StatusCodeAndErrorsMessagesStandard.NotFound)]

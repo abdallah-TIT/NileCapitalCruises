@@ -9,7 +9,7 @@ namespace NileCapitalCruises.Core.Models
         public CabinTypeCruise()
         {
 
-            CabinTypeCruisePeriodRates = new HashSet<CabinTypeCruisePeriodRate>();
+            CabinTypeCruiseItineraryTypePeriodRates = new HashSet<CabinTypeCruiseItineraryTypePeriodRate>();
             CabinTypeCruiseOperationDates = new HashSet<CabinTypeCruiseOperationDate>();
             CabinTypeCruisePhotos = new HashSet<CabinTypeCruisePhoto>();
         }
@@ -29,7 +29,7 @@ namespace NileCapitalCruises.Core.Models
         public bool? IsDeleted { get; set; } = false;
 
         [InverseProperty("CabinTypeCruise")]
-        public virtual ICollection<CabinTypeCruisePeriodRate> CabinTypeCruisePeriodRates { get; set; }
+        public virtual ICollection<CabinTypeCruiseItineraryTypePeriodRate> CabinTypeCruiseItineraryTypePeriodRates { get; set; }
 
         [InverseProperty("CabinTypeCruise")]
         public virtual ICollection<CabinTypeCruiseOperationDate> CabinTypeCruiseOperationDates { get; set; }

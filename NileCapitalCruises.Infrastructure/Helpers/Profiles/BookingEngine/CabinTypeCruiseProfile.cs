@@ -17,7 +17,8 @@ namespace NileCapitalCruises.Infrastructure.Helpers.Profiles.BookingEngine
             /// 
             CreateMap<CabinTypeCruisePhoto, BECabinTypeCruisePhotoResponseDto>();
             CreateMap<CabinTypeCruise, CabinTypeCruiseWithContentResponseDto>().ForMember(dest => dest.CabinTypeCruiseId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Allotment, opt => opt.MapFrom(src => src.CabinTypeCruiseOperationDates.Where(cbco => cbco.CabinTypeCruiseId == src.Id).FirstOrDefault().Allotment))
+                .ForMember(dest => dest.Allotment, opt => opt.MapFrom(src => src.CabinTypeCruiseOperationDates./*Where(cbco => cbco.CabinTypeCruiseId == src.Id).*/FirstOrDefault().Allotment))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.CabinTypeCruiseItineraryTypePeriodRates.FirstOrDefault().Price))
 
                 .AfterMap((src, dest) =>
                 {

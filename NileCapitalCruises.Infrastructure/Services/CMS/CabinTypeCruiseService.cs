@@ -2,15 +2,14 @@
 using NileCapitalCruises.Core.IRepositories;
 using NileCapitalCruises.Core.Models;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CabinTypeCruiseDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.RequestDtos.CruiseDtos;
 using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CabinTypeCruiseDtos;
-using NileCapitalCruises.Infrastructure.Dtos.CMS.ResponseDtos.CruiseDtos;
 using NileCapitalCruises.Infrastructure.Helpers.ApiResponses;
-using NileCapitalCruises.Infrastructure.Helpers.Utils;
 using NileCapitalCruises.Infrastructure.IServices;
 using NileCapitalCruises.Infrastructure.IServices.CMS;
 using Microsoft.AspNetCore.Http;
 using System.Transactions;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS;
+using NileCapitalCruises.Infrastructure.Data.Specification.CMS.CabinTypeCruiseSpecification;
 
 namespace NileCapitalCruises.Infrastructure.Services.CMS
 {
@@ -70,6 +69,36 @@ namespace NileCapitalCruises.Infrastructure.Services.CMS
 
         }
 
+        public async Task<IResponse> GetCabinTypeCruises(int cruiseId, int companyId, PaginationSpecParams paginationSpecParams)
+        {
 
+            var claims = _tokenService.GetClaimsFromJwt(_httpContext);
+            if (claims.ContainsKey("CompanyId") && int.Parse(claims["CompanyId"]) != companyId)
+            {
+                return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.ForbiddenAccess }, StatusCodeAndErrorsMessagesStandard.BadRequest);
+
+            }
+
+
+
+            var spec = new CMSCabinTypeCruiseSpecification(paginationSpecParams, cruiseId);
+
+            var countSpec = new CMSCabinTypeCruiseWithFiltersForCountSpecification(paginationSpecParams, cruiseId);
+            var totalItems = await _cabinTypeCruiseRepo.CountAsync(countSpec);
+            var items = await _cabinTypeCruiseRepo.ListAsync(spec);
+            if (items.Count() <= 0) return FailResponse.Error(new List<string> { StatusCodeAndErrorsMessagesStandard.NoItem }, StatusCodeAndErrorsMessagesStandard.NotFound);
+
+
+            var data = _mapper.Map<IReadOnlyList<CMSCabinTypeCruiseWithContentResponseDto>>(items);
+
+            return SuccessPaginationResponse<CMSCabinTypeCruiseWithContentResponseDto>.Success(
+                    data != null,
+                    StatusCodeAndErrorsMessagesStandard.OK,
+                    data,
+                    paginationSpecParams.PageIndex,
+                    paginationSpecParams.PageSize,
+                    totalItems
+                );
+        }
     }
 }
